@@ -2,15 +2,17 @@
 
 using namespace std;
 
+template <typename T>
 struct node{
-	int value;
+	T value;
 	node* next;
 };
 
+template <typename T>
 class intList{
 	
 	private:
-		node* first;
+		node<T>* first;
 		
 	public:
 		intList(){
@@ -19,21 +21,21 @@ class intList{
 			cout<<"b";*/
 		}
 		
-		int back(){
-			node* last = first;
+		T back(){
+			node<T>* last = first;
 			while(last->next != NULL){
 				last = last->next;
 			}
 			return last->value;
 		}
 		
-		void pushBack(int value){
+		void pushBack(T value){
 			if(first==NULL){
 				pushFront(value);
 			}
 			else{
-				node* last = first;
-				node* newLast = new node;
+				node<T>* last = first;
+				node<T>* newLast = new node<T>;
 				cout<<"a";
 				cout<<last->next;
 				while(last->next != NULL){
@@ -45,9 +47,9 @@ class intList{
 			}
 		}
 		
-		int popBack(){
-			node* last = first;
-			node* preLast = first;
+		T popBack(){
+			node<T>* last = first;
+			node<T>* preLast = first;
 			
 			while(last->next != NULL){
 				last = last->next;
@@ -63,28 +65,28 @@ class intList{
 			return ret;
 		}
 		
-		int front(){
+		T front(){
 			return first->value;
 		}
 		
-		int pushFront(int value){
-			node* tmp = new node;
+		T pushFront(T value){
+			node<T>* tmp = new node<T>;
 			tmp->value = value;
 			tmp->next = first;
 			first = tmp;
 		}
 		
-		int popFront(){
-			node* tmp = first;
+		T popFront(){
+			node<T>* tmp = first;
 			first = tmp->next;
 			int ret = tmp->value;
 			delete tmp;
 			return ret;
 		}
 		
-		int size(){
-			node* last = first;
-			int i = 1;
+		T size(){
+			node<T>* last = first;
+			T i = 1;
 			while(last->next != NULL){
 				last = last->next;
 				i++;
@@ -104,14 +106,29 @@ class intList{
 };
 
 int main(){
-	intList list;
+	intList<int> ints;
 	
-	list.pushBack(7);
+	ints.pushFront(1);
+	cout<<ints.back()<<" ";
 	
-	cout<<list.front();
+	ints.pushFront(5+3);
+	cout<<ints.front()<<"\n";
 	
-	list.popFront();
 	
+	intList<float> floats;
+	
+	floats.pushFront(0.1);
+	cout<<floats.back()<<" ";
+	//cout<<0.5*0.0002<<" ";
+	floats.pushFront(0.5*0.0002);
+	cout<<floats.front();
+	
+	
+	/*
+	list.pushBack(3);
 	cout<<list.back();
 	
+	list.pushBack(4);	
+	cout<<list.back();
+	*/
 }

@@ -1,24 +1,38 @@
-#include<iostream>
+#include <iostream>
 #include "Board.h"
 
 using namespace std;
 
-int main(){
-	Board alpha;
+int main()
+{
+ 	Board a; 
+	int n;
+	bool t = true;
 	
-	int a;
-	
-	while(1){
-		alpha.game_state();
-		alpha.print();
-		cin>>a;
-		system("cls");
-		try {
-			alpha.set(a);
+ 	while(1)
+	{
+  		a.print();
+  		
+	  	if(a.game_state())
+	   		break;
+	   	
+	   	if(t)
+	   	{
+	  		cin>>n;
+	   		try 
+			{
+		   		a.move(n);
+	  		}
+	  		catch(string exeption)
+			{
+	   			cout<<exeption<<"\n";
+	  		}
 		}
-		catch(string exeption){
-			cout<<exeption<<"\n";
-		}
-	}
-	return 0;
+	  	else
+	  		a.ai_move();
+	  	t=!t;
+	  	system("cls");
+	  	
+ 	}
+ 	return 0;
 }
